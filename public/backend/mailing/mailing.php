@@ -26,8 +26,8 @@ function sendMail($req) {
 
     mail($receiver, $subject, $msg, $header);
 
-    $receiver   = "eltru@gmx.de";
-    $msg        = "<h1>Jemand hat über dein Formular eine Anfrage gestellt!</h1><br /><p>Schau im phpMyAdmin von IONOS rein";
+    $receiver   = "[ my personal email adress ]";
+    $msg        = "<h1>Jemand hat über dein Formular eine Anfrage gestellt!</h1><br /><p>Schau im Postfach";
 
     mail($receiver, $subject, $msg, $header);
 
