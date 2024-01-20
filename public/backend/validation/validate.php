@@ -7,10 +7,6 @@ $res = [];
 $res["success"] = false;
 switch($req->task)
 {
-    case "test":
-        $res["success"] = true;
-        $res["content"] = "Test Response";
-    break;
     //DATA FROM <FirstForm>
     case "msg_validate_userdata":
         $res["task"] = $req->task;
