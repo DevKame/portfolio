@@ -9,6 +9,7 @@
 
             <div class="workInterface position-relative overflow-hidden d-flex flex-column justify-content-start align-items-center p-1 p-lg-2">
                 <work-interface></work-interface>
+                
                 <transition name="work-interface" mode="out-in">
                     <div v-if="showWork === 'vocabs'" class="headerLinksWrapper d-flex flex-column justify-content-start align-items-center">
 

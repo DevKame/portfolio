@@ -1,48 +1,40 @@
 <?php
 
 $res = "empty";
-// MANAGES PREFLIGHT - REQUEST
-// ONLY FOR DEVELOPMENT
-if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-    header("Access-Control-Allow-Origin: http://localhost:8080");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type");
-    exit();
-}
-// DEPENDING ON KIND OF REQUEST, PARTICULAR ACTIONS WILL BE INVOKED
-else {
-    header("Access-Control-Allow-Origin: http://localhost:8080");
-    header("Access-Control-Allow-Headers: Content-Type");
-    header("Content-Type: application/json");
+header("Content-Type: application/json");
 
-    $host =     "localhost";
-    $user =     "Kamedin";
-    $pw =       "12345";
-    $db =       "kame-utilities";
+// $host =     "localhost";
+// $user =     "Kamedin";
+// $pw =       "12345";
+// $db =       "kame-utilities";
+// FOR DEPLOYMENT
+$host =     "db5015037050.hosting-data.io";
+$user =     "dbu3236457";
+$pw =       "130793-Tru-21310";
+$db =       "dbs12492470";
 
-    // CASE FOR POST-REQUEST. EVERY REQUEST HAS A "task"-PROPERTY, THAT
-    // DETERMINES WHICH ACTION TO INVOKE
-        $req = json_decode(file_get_contents("php://input"));
-        $res = [];
-        $res["success"] = false;
-        switch($req->task)
-        {
-            case "save_user_request":
-                $res["content"] = "Test Response";
-                $con = connect();
-                $emailTimeoffsetEnough = emailTimeoffsetEnough($con, $req->email, $req->timestamp);
-                if(!$emailTimeoffsetEnough) {
-                    $res["reason"] = "wait-6";
-                    break;
-                }
-                $res["success"] = true;
-                saveRequest($con, $req);
-                mysqli_close($con);
-            break;
-        }
+// CASE FOR POST-REQUEST. EVERY REQUEST HAS A "task"-PROPERTY, THAT
+// DETERMINES WHICH ACTION TO INVOKE
+    $req = json_decode(file_get_contents("php://input"));
+    $res = [];
+    $res["success"] = false;
+    switch($req->task)
+    {
+        case "save_user_request":
+            $res["content"] = "Test Response";
+            $con = connect();
+            $emailTimeoffsetEnough = emailTimeoffsetEnough($con, $req->email, $req->timestamp);
+            if(!$emailTimeoffsetEnough) {
+                $res["reason"] = "wait-6";
+                break;
+            }
+            $res["success"] = true;
+            saveRequest($con, $req);
+            mysqli_close($con);
+        break;
+    }
 
-        $res = json_encode($res);
-}
+    $res = json_encode($res);
 function saveRequest($con, $req) {
     $query =
     "INSERT INTO kame_requests

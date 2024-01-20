@@ -89,9 +89,13 @@ import { ref,reactive, computed, provide, onMounted, watch } from 'vue';
 // BACKEND - COLLECTION OF BACKEND API-ENDPOINTS
 ////////////////////////////////////////////////
 // ENTRY VALIDATION - FOR VALIDATING USER ENTRIES
-let API_VALIDATE = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/validation/validate.php");
-let API_SAVE_REQUEST = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/requests/requests.php");
-let API_MAIL = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/mailing/mailing.php");
+// let API_VALIDATE = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/validation/validate.php");
+// let API_SAVE_REQUEST = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/requests/requests.php");
+// let API_MAIL = ref("http://localhost/Eskamedin/hexa_portfolio/vue_app/public/backend/mailing/mailing.php");
+// CHANGED API ENPOINTS FOR DEPLOYMENT:
+let API_VALIDATE = ref("../backend/validation/validate.php");
+let API_SAVE_REQUEST = ref("../backend/requests/requests.php");
+let API_MAIL = ref("../backend/mailing/mailing.php");
 // received by [<FirstForm>, <SecondForm>, <ThirdForm>]
 provide("api_val", API_VALIDATE);
 
@@ -348,9 +352,6 @@ async function submitUserEntries() {
         if(!document.location.href.includes("localhost"))
         {
             sendEmailToMe();
-        }
-        else {
-            console.log("SEITEN URL BESITZT LOCALHOST, EMAIL WIRD NICHT GESENDET!");
         }
     }
     else {

@@ -1,60 +1,35 @@
 <?php
 
 $res = "empty";
-// MANAGES PREFLIGHT - REQUEST
-// ONLY FOR DEVELOPMENT
-if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-    header("Access-Control-Allow-Origin: http://localhost:8080");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type");
-    exit();
-}
-// DEPENDING ON KIND OF REQUEST, PARTICULAR ACTIONS WILL BE INVOKED
-else {
-    header("Access-Control-Allow-Origin: http://localhost:8080");
-    header("Access-Control-Allow-Headers: Content-Type");
-    header("Content-Type: application/json");
 
-    // CASE FOR GET-REQUEST
-    //TODO: REMOVE CASE FOR GET REQUEST BC I DONT THINK ILL USED GET´S
-    if($_SERVER["REQUEST_METHOD"] === "GET")
-    {
-        header("Content-Type: text/plain");
-    }
-    // CASE FOR POST-REQUEST. EVERY REQUEST HAS A "task"-PROPERTY, THAT
-    // DETERMINES WHICH ACTION TO INVOKE
-    if($_SERVER["REQUEST_METHOD"] === "POST")
-    {
-        $req = json_decode(file_get_contents("php://input"));
-        $res = [];
-        $res["success"] = false;
-        switch($req->task)
-        {
-            case "test":
-                $res["success"] = true;
-                $res["content"] = "Test Response";
-            break;
-            //DATA FROM <FirstForm>
-            case "msg_validate_userdata":
-                $res["task"] = $req->task;
-                $res["validation_result"] = checkUserEntries($req->lastname, $req->firstname, $req->email);
-                if($res["validation_result"]["invalid_entries"] === 0) {
-                    $res["success"] = true;
-                }
-            break;
-            //DATA FROM <SecondForm>
-            case "msg_validate_userdesc":
-                $res["task"] = $req->task;
-                $res["validation_result"] = checkUserDesc($req->desc);
-                if($res["validation_result"]["desc_valid"]) {
-                    $res["success"] = true;
-                }
-            break;
+$req = json_decode(file_get_contents("php://input"));
+$res = [];
+$res["success"] = false;
+switch($req->task)
+{
+    case "test":
+        $res["success"] = true;
+        $res["content"] = "Test Response";
+    break;
+    //DATA FROM <FirstForm>
+    case "msg_validate_userdata":
+        $res["task"] = $req->task;
+        $res["validation_result"] = checkUserEntries($req->lastname, $req->firstname, $req->email);
+        if($res["validation_result"]["invalid_entries"] === 0) {
+            $res["success"] = true;
         }
-
-        $res = json_encode($res);
-    }
+    break;
+    //DATA FROM <SecondForm>
+    case "msg_validate_userdesc":
+        $res["task"] = $req->task;
+        $res["validation_result"] = checkUserDesc($req->desc);
+        if($res["validation_result"]["desc_valid"]) {
+            $res["success"] = true;
+        }
+    break;
 }
+
+$res = json_encode($res);
 
 function checkUserDesc($desc) {
     $result = [];
