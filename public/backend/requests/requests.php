@@ -2,16 +2,11 @@
 
 $res = "empty";
 header("Content-Type: application/json");
-
-// $host =     "localhost";
-// $user =     "Kamedin";
-// $pw =       "12345";
-// $db =       "kame-utilities";
 // FOR DEPLOYMENT
-$host =     "db5015037050.hosting-data.io";
-$user =     "dbu3236457";
-$pw =       "130793-Tru-21310";
-$db =       "dbs12492470";
+$host =     "...";
+$user =     "...";
+$pw =       "...";
+$db =       "...";
 
 // CASE FOR POST-REQUEST. EVERY REQUEST HAS A "task"-PROPERTY, THAT
 // DETERMINES WHICH ACTION TO INVOKE
