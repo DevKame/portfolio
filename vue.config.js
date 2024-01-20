@@ -5,7 +5,6 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         '@': require('path').resolve(__dirname, 'src'),
-        // Füge hier weitere Aliase nach Bedarf hinzu
       },
     },
   },
