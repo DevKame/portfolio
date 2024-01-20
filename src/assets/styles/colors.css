@@ -1,0 +1,85 @@
+:root {
+    --prim: #192145;
+    --sec: #434d78;
+    --sec-dark: #272e47;
+    --tert: #996913;
+
+    --text-prim: #bac1de;
+    --text-danger: firebrick;
+
+    --hexa-menu-icon-color: #777;
+    --hexa-menu-text: #777;
+
+    --form-content-border-color: #333;
+}
+
+.bg-prim {
+    background-color: var(--prim);
+}
+.bg-sec {
+    background-color: var(--sec);
+}
+.bg-tert {
+    background-color: var(--tert);
+}
+/* TODO: Button sec und prim für große Screens komplett ändern */
+.btn-sec {
+    border: 1px solid var(--tert);
+    border-radius: 5px;
+    color: var(--tert);
+}
+.btn-prim {
+    border: none;
+    border-radius: 5px;
+    color: black;
+    background-color: var(--tert);
+}
+.bg-sec-dark {
+    background-color: var(--sec-dark);
+}
+.text-hexa-menu {
+    color: var(--hexa-menu-icon-color);
+}
+.text-prim {
+    color: var(--text-prim);
+}
+.text-dgr {
+    color: var(--text-danger);
+}
+.text-tert {
+    color: var(--tert);
+}
+
+.tek-reg-400 {
+    font-family: "Tektur Regular 400";
+}
+.ub-med-500 {
+    font-family: "Ubuntu Med 500";
+}
+
+mark {
+    background-color: transparent;
+    color: var(--tert);
+}
+label {
+    color: var(--tert);
+    text-shadow: 0 0 3px black;
+}
+input[type="text"],
+textarea,
+input[type="email"] {
+    outline: none;
+    background-color: var(--sec);
+    border: 2px solid var(--tert);
+    border-radius: 5px;
+    color: var(--text-prim);
+    resize: none;
+}
+button {
+    background-color: transparent;
+    border: none;
+}
+/* FOR THE LINKS WITHIN THE KEYWORDS */
+section.theAbout a {
+    color: var(--text-prim);
+}
