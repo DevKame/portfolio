@@ -16,9 +16,9 @@ else {
     header("Content-Type: application/json");
 
     $host =     "localhost";
-    $user =     "Kamedin";
-    $pw =       "12345";
-    $db =       "kame-utilities";
+    $user =     "[...]";
+    $pw =       "[...]";
+    $db =       "[...]";
 
     // CASE FOR POST-REQUEST. EVERY REQUEST HAS A "task"-PROPERTY, THAT
     // DETERMINES WHICH ACTION TO INVOKE
